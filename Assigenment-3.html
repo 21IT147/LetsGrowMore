@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #20d2ed;
+      }
+      
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+      
+      label {
+        display: inline-block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      
+      input[type="text"],
+      input[type="email"],
+      input[type="url"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+      }
+
+      #registration-form{
+        background-color: aqua;
+      }
+      
+      .radio-buttons,
+      .checkboxes {
+        margin-bottom: 20px;
+      }
+      
+      .radio-buttons label,
+      .checkboxes label {
+        margin-right: 10px;
+      }
+      
+      input[type="radio"],
+      input[type="checkbox"] {
+        display: inline-block;
+        
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+      
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #d0c30e;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      
+      .btn:hover{
+        background-color: #2f4004;
+        
+      }
+      
+      #registration-data{
+        background-color: aqua;
+      }
+      .regclass {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+      
+  </style>
+  <body>
+    <h1>Registration Form</h1>
+    <form id="registration-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="website">Website:</label>
+      <input type="url" id="website" name="website">
+
+      <label for="image-link">Image Link:</label>
+      <input type="url" id="image-link" name="image-link">
+
+      <label>Gender:</label>
+      <div class="radio-buttons">
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female" required>
+        <label for="female">Female</label>
+        <input type="radio" id="other" name="gender" value="other" required>
+        <label for="other">Other</label>
+      </div>
+
+      <label>Skills:</label>
+      <div class="checkboxes">
+        <input type="checkbox" id="java" name="skills[]" value="Java">
+        <label for="java">Java</label>
+        <input type="checkbox" id="html" name="skills[]" value="HTML">
+        <label for="html">HTML</label>
+        <input type="checkbox" id="css" name="skills[]" value="CSS">
+        <label for="css">CSS</label>
+      </div>
+
+      <input type="submit" value="Enroll Student" class="btn">
+      <button type="button" id="clear-button" class="btn">Clear</button>
+    </form>
+
+    <div id="registration-data" class="regclass"></div>
+
+    <script>
+     
+const registrationForm = document.getElementById('registration-form');
+const registrationData = document.getElementById('registration-data');
+
+registrationForm.addEventListener('submit', function(event) {
+
+  event.preventDefault();
+
+  const formData = new FormData(registrationForm);
+  const newDiv = document.createElement('div');
+
+  newDiv.className = "regclass";
+
+  
+  for (const [key, value] of formData.entries()) {
+    const newPara = document.createElement('p');
+    newPara.textContent = `${key}: ${value}`;
+    newDiv.appendChild(newPara);
+  }
+
+  
+  registrationData.appendChild(newDiv);
+
+  
+  registrationForm.reset();
+});
+
+
+const clearButton = document.getElementById('clear-button');
+clearButton.addEventListener('click', function() {
+  registrationForm.reset();
+});
+
+
+    </script>
+  </body>
+</html>
